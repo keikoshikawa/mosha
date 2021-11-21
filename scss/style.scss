@@ -180,6 +180,9 @@ $pc-lg: 1265px;
                   i {
                     width: 230px;
                     height: 230px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     border-radius: 50%;
                     background-color: #FFFFFF;
                   }
