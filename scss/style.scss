@@ -3,26 +3,25 @@
 ---------------------------------------------- */
 html {
     font-size: 100%;
-}
-body {
-    font-family: 'Noto Sans JP', sans-serif;
-    color: #131D33 ;
-}
-a {
-    text-decoration: none;
-}
-li {
-    list-style: none;
-}
-img {
-    max-width: 100%;
-}
-* {
-    box-sizing: border-box;
-    margin: 0px; 
-    padding: 0px; 
-    outline: 1px solid red;
-}
+    body {
+        font-family: 'Noto Sans JP', sans-serif;
+        color: #131D33 ;
+        line-height: 1.7;
+        a {
+            text-decoration: none;
+        }
+        li {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0px; 
+            padding: 0px; 
+            outline: 1px solid red;
+        }
 
 /*-- ブレイクポイントを変数に格納 --*/
 $md: 768px;
@@ -78,10 +77,56 @@ $pc-lg: 1265px;
             font-weight: 900;
             font-size: 1.125rem;/*18px*/
         }
-    }
-}
-.main-nav {
+    } 
+} /*#page-header*/
+.btn {
+    /*ハンバーガーボタンの配置位置*/
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    /*ハンバーガーボタンの大きさ*/
+    width: 48px;
+    height: 48px;
+    /*最前面に*/
+    z-index: 10;
+    background-color: #f6efdb;
+    .btn-line {
+        /*真ん中のバーガー線*/
+        display: block;
+        margin-left: auto; /*バーガー線を水平中央寄せ*/
+        margin-right: auto; /*バーガー線を水平中央寄せ*/
+        position: relative; /*バーガー線の基準位置*/
+        width: 22px; /*線の長さと高さ*/
+        height: 2px;
+        background-color: #2498B3; /*バーガー線の色*/
+        transition: .2s;
+        /*上のバーガー線*/
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #2498B3;
+            transition: .5s;
+            transform: translateY(-12px);
+        }
+        /*下のバーガー線*/
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #2498B3;
+            transition: .5s;
+            transform: translateY(12px);
+        }
+    } /*btn-line*/
+} /*btn*/
+.menu {
     display: flex;
+    transition: .3s;
     li {
         line-height: 70px;
         text-align: center;
@@ -89,18 +134,21 @@ $pc-lg: 1265px;
         padding: 0px 15px;
         &:last-child {
             background-color: #2498B3;
+            color: #FFFFFF;
         }
         &:hover {
             background-color: #D4F1F8;
+            cursor: pointer;
         }
         &:hover:last-child {
             background-color: #2498B3;
         }
         @include pc {
             line-height: 50px;
+            visibility = 'hidden';
         }
     }
-}
+} /*.main-nav*/
 /* MAIN
 ----------------------------------------- */
 .main {
@@ -108,13 +156,18 @@ $pc-lg: 1265px;
     top: 70px;
     left: 0;
     background-image: url(../images/bg-hero1.png),url(../images/bg-hero2.png),url(../images/bg-hero3.png);
-    width: 100%;
+    width: 100vw;
     height: 650px;
-    background-size: 140%;
+    background-size: auto,auto,cover;
     background-repeat: no-repeat;
-    background-position:center center;  
+    background-position: center center;  
     @include pc {
         top: 50px;
+    }
+    @include md {
+        height: 165px;
+        background-size: 800px,850px,cover;   
+        background-position: center  -30px;
     }
     .home-content {
         width: 416px;
@@ -171,7 +224,7 @@ $pc-lg: 1265px;
         .recommendation {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: space-between;
             margin: -193px 0px 0px;
             .recommendation-entry {
                   z-index: 20;
@@ -194,8 +247,9 @@ $pc-lg: 1265px;
                   p {
                     color: #FFFFFF;
                   }
-            }
-        }
-    }
-}
-
+            } /*.recommendation-entry*/
+        } /*.recommendation*/
+    } /*.black*/
+} /*.main*/
+} /*body*/
+} /*html*/
