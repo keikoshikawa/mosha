@@ -11,6 +11,7 @@ html body {
   line-height: 1.7;
   /*-- ブレイクポイントを変数に格納 ---------------------*/
   /*スマホサイズ*/
+  /*３つのアイコンを寄せる*/
   /*ハンバーガーボタンに使用*/
   /*ヘッダーメニューの幅を狭める時に使用*/
   /*ロゴ横タイトルを消す時に使用*/
@@ -38,7 +39,7 @@ html body * {
           box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  outline: 1px solid red;
+  /* outline: 1px solid red;*/
 }
 html body #page-header {
   display: -webkit-box;
@@ -52,7 +53,7 @@ html body #page-header {
   z-index: 3;
   /*mainがヘッダーに重ならないように設定*/
 }
-@media screen and (max-width: 1185px) {
+@media screen and (max-width: 1200px) {
   html body #page-header {
     height: 50px;
   }
@@ -63,7 +64,7 @@ html body #page-header .header-logo {
   margin: 20px 0px 0px 20px;
   vertical-align: middle;
 }
-@media screen and (max-width: 1185px) {
+@media screen and (max-width: 1200px) {
   html body #page-header .header-logo {
     margin: 10px 0px 0px 10px;
   }
@@ -77,7 +78,7 @@ html body #page-header .site-title {
   /*14px*/
   font-weight: 900;
 }
-@media screen and (max-width: 1265px) {
+@media screen and (max-width: 1280px) {
   html body #page-header .site-title {
     display: none;
   }
@@ -89,6 +90,7 @@ html body #page-header .site-title strong {
 }
 html body #hamburger {
   /*btn-gNav*/
+  /*アコーディオンメニューの設定*/
   /*#gNav*/
 }
 html body #hamburger .btn-gNav {
@@ -107,14 +109,14 @@ html body #hamburger .btn-gNav {
 html body #hamburger .btn-gNav:hover {
   cursor: pointer;
 }
-@media screen and (min-width: 1185px) {
+@media screen and (min-width: 1200px) {
   html body #hamburger .btn-gNav {
-    /*1185px以上はハンバーガーボタン非表示*/
+    /*1200px以上はハンバーガーボタン非表示*/
     display: none;
   }
 }
 html body #hamburger .btn-gNav.open {
-  background: #2498B3;
+  background-color: #2498B3;
 }
 html body #hamburger .btn-gNav .btn-line {
   /*真ん中のバーガー線*/
@@ -156,8 +158,8 @@ html body #hamburger .btn-gNav .btn-line.open::before {
   background-color: #FFFFFF;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
   /*上の線を45度傾ける*/
 }
 html body #hamburger .btn-gNav .btn-line::after {
@@ -177,8 +179,8 @@ html body #hamburger .btn-gNav .btn-line.open::after {
   background-color: #FFFFFF;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
   /*下の線を45度傾ける*/
 }
 html body #hamburger #gNav {
@@ -187,7 +189,7 @@ html body #hamburger #gNav {
   top: 50px;
   right: -100%;
   width: 100%;
-  height: 100%;
+  /* height: 100%;*/
   z-index: 2;
   background: #FFFFFF;
   /*.gNav-menu*/
@@ -196,7 +198,7 @@ html body #hamburger #gNav.open {
   /*click時のみ表示*/
   right: 0px;
 }
-@media screen and (min-width: 1185px) {
+@media screen and (min-width: 1200px) {
   html body #hamburger #gNav {
     position: fixed;
     top: 0;
@@ -205,9 +207,14 @@ html body #hamburger #gNav.open {
     width: 830px;
   }
 }
+@media screen and (max-width: 1200px) {
+  html body #hamburger #gNav {
+    height: auto;
+  }
+}
 html body #hamburger #gNav .gNav-menu {
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+   height: 100%;*/
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -218,8 +225,9 @@ html body #hamburger #gNav .gNav-menu {
   text-align: left;
   /*.has-sub*/
 }
-@media screen and (min-width: 1185px) {
+@media screen and (min-width: 1200px) {
   html body #hamburger #gNav .gNav-menu {
+    /*最大画面時の表示設定*/
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -230,82 +238,114 @@ html body #hamburger #gNav .gNav-menu {
     -webkit-box-pack: right;
         -ms-flex-pack: right;
             justify-content: right;
-    width: 100%;
-    height: 100%;
+    /* width: 100%;*/
+    /* height: 100%;*/
     position: fixed;
     top: 0;
     right: 0;
   }
 }
 html body #hamburger #gNav .gNav-menu .has-sub {
-  display: block;
+  /*display: block;*/
   position: relative;
-  height: 45px;
+  line-height: 47px;
+  /*height: 48px;
   display: -webkit-box;
-  -webkit-box-align: center;
-  font-weight: 700;
+  -webkit-box-align: center;*/
   white-space: nowrap;
   /*自動折り返しさせない*/
+  /*a*/
+  /*subメニューの横に＋を表示*/
   /*.sub*/
 }
-html body #hamburger #gNav .gNav-menu .has-sub:last-child {
-  display: none;
+html body #hamburger #gNav .gNav-menu .has-sub:hover .drop-down::after {
+  /*＋の縦線を消してグレーの背景色にする*/
+  content: "";
+  display: block;
+  position: absolute;
+  top: 12px;
+  right: 0;
+  width: 50px;
+  height: 47px;
+  background-color: #f7f7f7;
+  z-index: 500;
 }
-@media screen and (min-width: 1185px) {
-  html body #hamburger #gNav .gNav-menu .has-sub {
+@media screen and (min-width: 1200px) {
+  html body #hamburger #gNav .gNav-menu .has-sub:hover .drop-down::after {
+    display: none;
+  }
+}
+html body #hamburger #gNav .gNav-menu .has-sub a {
+  font-weight: 700;
+  display: block;
+  line-height: 47px;
+  padding: 0 10px;
+  height: 47px;
+}
+html body #hamburger #gNav .gNav-menu .has-sub a:hover {
+  background-color: #e9f8fb;
+}
+@media screen and (min-width: 1200px) {
+  html body #hamburger #gNav .gNav-menu .has-sub a:hover {
+    background-color: #d4f1f8;
+  }
+}
+@media screen and (min-width: 1200px) {
+  html body #hamburger #gNav .gNav-menu .has-sub a {
+    /*最大画面時の表示設定*/
+    display: block;
     height: 70px;
-    vertical-align: middle;
-    padding: 0px 15px;
+    line-height: 50px;
+    padding: 10px 15px;
     text-align: center;
     cursor: pointer;
   }
-  html body #hamburger #gNav .gNav-menu .has-sub:last-child {
-    display: -webkit-box;
-    -webkit-box-align: center;
-    background-color: #2498B3;
+}
+@media screen and (max-width: 1260px) {
+  html body #hamburger #gNav .gNav-menu .has-sub a {
+    padding: 10px 10px;
+    /*画面幅1200pxでメニュー幅を狭める*/
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
   }
-  html body #hamburger #gNav .gNav-menu .has-sub:last-child:hover {
+}
+html body #hamburger #gNav .gNav-menu .has-sub:last-child {
+  display: none;
+  /* display: -webkit-box;
+      -webkit-box-align: center;*/
+}
+@media screen and (min-width: 1200px) {
+  html body #hamburger #gNav .gNav-menu .has-sub:last-child {
+    display: block;
     background-color: #2498B3;
   }
   html body #hamburger #gNav .gNav-menu .has-sub:last-child a {
     color: #FFFFFF;
   }
-  html body #hamburger #gNav .gNav-menu .has-sub:hover {
-    background-color: #D4F1F8;
+  html body #hamburger #gNav .gNav-menu .has-sub:last-child a:hover {
+    background-color: #2498B3;
   }
 }
-@media screen and (max-width: 1245px) {
-  html body #hamburger #gNav .gNav-menu .has-sub {
-    padding: 0px 10px;
-    /*画面幅1200pxでメニュー幅を狭める*/
-  }
-}
-@media screen and (max-width: 1185px) {
-  html body #hamburger #gNav .gNav-menu .has-sub:hover {
-    background-color: #e9f8fb;
-  }
-  html body #hamburger #gNav .gNav-menu .has-sub:hover a::after {
-    display: none;
-  }
-}
-html body #hamburger #gNav .gNav-menu .has-sub a::before {
+html body #hamburger #gNav .gNav-menu .has-sub .drop-down::before {
+  /*横線*/
   display: block;
   content: "";
   position: absolute;
-  top: 50%;
+  top: 25px;
   right: 13px;
   width: 24px;
   height: 2px;
   margin-top: -1px;
-  background: #121212;
-  z-index: 300;
+  background-color: #121212;
+  z-index: 1000;
 }
-@media screen and (min-width: 1185px) {
-  html body #hamburger #gNav .gNav-menu .has-sub a::before {
+@media screen and (min-width: 1200px) {
+  html body #hamburger #gNav .gNav-menu .has-sub .drop-down::before {
     display: none;
   }
 }
-html body #hamburger #gNav .gNav-menu .has-sub a::after {
+html body #hamburger #gNav .gNav-menu .has-sub .drop-down::after {
+  /*縦線*/
   display: block;
   content: "";
   position: absolute;
@@ -314,38 +354,55 @@ html body #hamburger #gNav .gNav-menu .has-sub a::after {
   width: 2px;
   height: 24px;
   margin-top: -12px;
-  background: #121212;
+  background-color: #121212;
+  z-index: 100;
 }
-@media screen and (min-width: 1185px) {
-  html body #hamburger #gNav .gNav-menu .has-sub a::after {
+@media screen and (min-width: 1200px) {
+  html body #hamburger #gNav .gNav-menu .has-sub .drop-down::after {
     display: none;
   }
 }
 html body #hamburger #gNav .gNav-menu .has-sub .sub {
-  position: absolute;
-  top: 70px;
-  left: 0;
   display: none;
+  position: static;
+  /*li*/
 }
-@media screen and (max-width: 1185px) {
+@media screen and (min-width: 1200px) {
   html body #hamburger #gNav .gNav-menu .has-sub .sub {
-    top: 50px;
-    left: 25px;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    z-index: 1000;
   }
 }
 html body #hamburger #gNav .gNav-menu .has-sub .sub li {
-  font-weight: 400;
+  /*a*/
 }
 html body #hamburger #gNav .gNav-menu .has-sub .sub li a {
   display: -webkit-box;
   -webkit-box-align: center;
-  background-color: #e9f8fb;
-  height: auto;
-  padding: 15px 60px 15px 15px;
+  background-color: #FFFFFF;
+  /*height: auto;*/
+  padding: 10px 60px 10px 15px;
+  margin: 0px;
+  height: 45px;
+  line-height: 25px;
+  font-weight: 400;
 }
 html body #hamburger #gNav .gNav-menu .has-sub .sub li a:hover {
-  background-color: #FFFFFF;
-  color: #2498b3;
+  background-color: #e9f8fb;
+}
+@media screen and (min-width: 1200px) {
+  html body #hamburger #gNav .gNav-menu .has-sub .sub li a {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    height: 57px;
+    background-color: #e9f8fb;
+  }
+  html body #hamburger #gNav .gNav-menu .has-sub .sub li a:hover {
+    background-color: #FFFFFF;
+    color: #2498b3;
+  }
 }
 html body .main {
   position: relative;
@@ -362,7 +419,7 @@ html body .main {
   /*スクロール時の背景画像の設定*/
   /*.black*/
 }
-@media screen and (max-width: 1185px) {
+@media screen and (max-width: 1200px) {
   html body .main {
     top: 50px;
   }
@@ -408,6 +465,7 @@ html body .main .home-content .main-logo {
 }
 html body .main .home-content p {
   margin-top: 25px;
+  font-weight: 700;
 }
 @media screen and (max-width: 768px) {
   html body .main .home-content p {
@@ -418,12 +476,15 @@ html body .main .home-content p {
 html body .main .home-content .button {
   font-size: 1.125rem;
   /*18px*/
+  font-weight: 700;
   background-color: #2498B3;
   color: #FFFFFF;
   border-radius: 5px;
   padding: 18px 37px;
   margin: 25px auto;
   display: inline-block;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 @media screen and (max-width: 768px) {
   html body .main .home-content .button {
@@ -469,7 +530,7 @@ html body .main .black .recommendation {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    height: 1240px;
+    height: 1154px;
   }
 }
 html body .main .black .recommendation .recommendation-entry {
@@ -477,9 +538,19 @@ html body .main .black .recommendation .recommendation-entry {
   width: 230px;
   margin: -193px 50px 0px;
 }
+@media screen and (max-width: 1080px) {
+  html body .main .black .recommendation .recommendation-entry {
+    width: 30%;
+    margin: -193px 2% 0px 2%;
+    padding: 0;
+  }
+}
 @media screen and (max-width: 768px) {
   html body .main .black .recommendation .recommendation-entry {
     margin: auto 0px;
+    padding-left: 20px;
+    padding-right: 25px;
+    width: auto;
   }
 }
 html body .main .black .recommendation .recommendation-entry i {
@@ -498,6 +569,7 @@ html body .main .black .recommendation .recommendation-entry i {
   border-radius: 50%;
   background-color: #FFFFFF;
   margin: 0 auto;
+  border: solid 5px;
 }
 html body .main .black .recommendation .recommendation-entry h1 {
   font-size: 1.5rem;
@@ -509,30 +581,4 @@ html body .main .black .recommendation .recommendation-entry p {
 }
 
 /*html*/
-/*
- @include max-width(1200px) {
- &.open>a::before {
-            display: block;
-            content: "";
-            position: absolute;
-            top: 23.55px;
-            right: 13px;
-            width: 24px;
-            height: 2px;
-            margin-top: -1px;
-            background: #121212;
-        }
-        &.open>a::after {
-            display: block;
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 50px;
-            height: 47.1px;
-            margin-top: 0;
-            background: #f7f7f7;
-        }
-*/
 /*# sourceMappingURL=style.css.map */

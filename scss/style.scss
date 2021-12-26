@@ -21,18 +21,24 @@ html {
             box-sizing: border-box;
             margin: 0px; 
             padding: 0px; 
-            outline: 1px solid red;
+           /* outline: 1px solid red;*/
         }
        
 /*-- ブレイクポイントを変数に格納 ---------------------*/
 $md: 768px; /*スマホサイズ*/
-$pc: 1185px; /*ハンバーガーボタンに使用*/
-$pc-md: 1245px; /*ヘッダーメニューの幅を狭める時に使用*/
-$pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
+$pc-s: 1080px; /*３つのアイコンを寄せる*/
+$pc: 1200px; /*ハンバーガーボタンに使用*/
+$pc-md: 1260px; /*ヘッダーメニューの幅を狭める時に使用*/
+$pc-lg: 1280px; /*ロゴ横タイトルを消す時に使用*/
 
 /*-----レスポンシブ対応------------------------------*/
 @mixin md {
     @media screen and (max-width: $md) {
+        @content;
+    }
+}
+@mixin pc-s {
+    @media screen and (max-width: $pc-s) {
         @content;
     }
 }
@@ -110,11 +116,11 @@ $pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
         &:hover {
             cursor: pointer;
         }
-        @include pc-min {  /*1185px以上はハンバーガーボタン非表示*/
+        @include pc-min {  /*1200px以上はハンバーガーボタン非表示*/
             display: none;
         }
         &.open {
-            background: #2498B3;
+            background-color: #2498B3;
         }
         .btn-line {
             /*真ん中のバーガー線*/
@@ -144,7 +150,7 @@ $pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
                 content: "";
                 background-color: #FFFFFF; 
                 transition: .2s;
-                transform: rotate(45deg); /*上の線を45度傾ける*/
+                transform: rotate(-45deg); /*上の線を45度傾ける*/
             }
             /*下のバーガー線*/
             &::after {
@@ -161,16 +167,18 @@ $pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
                 content: "";
                 background-color: #FFFFFF;
                 transition: .2s;
-                transform: rotate(-45deg); /*下の線を45度傾ける*/
+                transform: rotate(45deg); /*下の線を45度傾ける*/
             }
         } /*btn-line*/
     } /*btn-gNav*/
+
+    /*アコーディオンメニューの設定*/
     #gNav { /*画面外側に隠す*/
         position: fixed;
         top: 50px;
         right: -100%;
         width: 100%;
-        height: 100%;
+       /* height: 100%;*/
         z-index: 2;
         background: #FFFFFF;
         &.open { /*click時のみ表示*/
@@ -183,84 +191,106 @@ $pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
             height: 70px;
             width: 830px;    
         }
+        @include pc {
+            height: auto;
+        } 
         .gNav-menu {
-            width: 100%;
-            height: 100%;
+           /* width: 100%;
+            height: 100%;*/
             display: flex;
             flex-direction: column;
             text-align: left;
-            
-            @include pc-min { 
+            @include pc-min { /*最大画面時の表示設定*/
                 display: flex;
                 flex-direction: row;
                 justify-content: right;
-                width: 100%;
-                height: 100%;
+               /* width: 100%;*/
+               /* height: 100%;*/
                 position: fixed;
                 top: 0;
                 right: 0;    
             }
             .has-sub {
-                display: block;
+                /*display: block;*/
                 position: relative;
-                height: 45px;
+                line-height: 47px;
+                /*height: 48px;
                 display: -webkit-box;
-                -webkit-box-align: center;
-                font-weight: 700;
+                -webkit-box-align: center;*/
                 white-space: nowrap; /*自動折り返しさせない*/
-                &:last-child {
-                    display: none;
-                }
-                @include pc-min { 
-                    height: 70px;
-                    vertical-align: middle;
-                    padding: 0px 15px;
-                    text-align: center;
-                    cursor: pointer;
-                    &:last-child {
-                        display: -webkit-box;
-                        -webkit-box-align: center;
-                        background-color: #2498B3;
-                        &:hover {
-                            background-color: #2498B3;
+                &:hover {
+                    .drop-down::after { /*＋の縦線を消してグレーの背景色にする*/
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: 12px;
+                        right: 0;
+                        width: 50px;
+                        height: 47px;
+                        background-color: #f7f7f7;
+                        z-index: 500;
+                        @include pc-min { 
+                           display: none;
                         }
+                    }
+                }
+                a {
+                    font-weight: 700;
+                    display: block;
+                    line-height: 47px;
+                    padding: 0 10px;
+                    height: 47px;
+                    &:hover {
+                          @include pc-min { 
+                               background-color: #d4f1f8;
+                           }
+                        background-color: #e9f8fb;
+                    }
+                    @include pc-min { /*最大画面時の表示設定*/
+                        display: block;
+                        height: 70px;
+                        line-height: 50px;
+                        padding: 10px 15px;
+                        text-align: center;
+                        cursor: pointer;
+                    }
+                    @include pc-md { 
+                        padding: 10px 10px; /*画面幅1200pxでメニュー幅を狭める*/
+                        transition: .5s;
+                    }
+                }/*a*/
+                &:last-child{
+                    display: none;
+                    /* display: -webkit-box;
+                        -webkit-box-align: center;*/
+                    @include pc-min {
+                        display: block;
+                        background-color: #2498B3;
                         a  {
                             color: #FFFFFF;
-                        }
-                    }
-                    &:hover {
-                        background-color: #D4F1F8;
-                    }
-                }
-
-                @include pc-md { 
-                    padding: 0px 10px; /*画面幅1200pxでメニュー幅を狭める*/
-                }
-                @include pc {
-                    &:hover {
-                        background-color:#e9f8fb;
-                        a::after {
-                            display: none;
+                            &:hover {
+                                    background-color: #2498B3;
+                            }
                         }
                     }
                 }
-                a::before {
+                 /*subメニューの横に＋を表示*/
+                .drop-down::before { /*横線*/
                     display: block;
                     content: "";
                     position: absolute;
-                    top: 50%;
+                    top: 25px;
                     right: 13px;
                     width: 24px;
                     height: 2px;
                     margin-top: -1px;
-                    background: #121212;
-                    z-index: 300;
+                    background-color: #121212;
+                    z-index: 1000;
                     @include pc-min { 
                         display: none;
                     }
-
                 }
-                a::after {
+                .drop-down::after { /*縦線*/
                     display: block;
                     content: "";
                     position: absolute;
@@ -269,34 +299,47 @@ $pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
                     width: 2px;
                     height: 24px;
                     margin-top: -12px;
-                    background: #121212;
+                    background-color: #121212;
+                    z-index: 100;
                     @include pc-min { 
                         display: none;
                     }
                 }
                 .sub {
-                    position: absolute;
-                    top: 70px;
-                    left: 0;
                     display: none;
-                    @include pc {
-                        top: 50px;
-                        left: 25px;
-                    } 
+                    position: static;
+                    @include pc-min { 
+                        position: absolute;
+                        top: 70px;
+                        left: 0;
+                        z-index: 1000;
+                    }
                     li {
-                        font-weight: 400;
                         a {
                             display: -webkit-box;
                             -webkit-box-align: center;
-                            background-color: #e9f8fb;
-                            height: auto;
-                            padding: 15px 60px 15px 15px;
+                            background-color: #FFFFFF;
+                            /*height: auto;*/
+                            padding: 10px 60px 10px 15px;
+                            margin: 0px;
+                            height: 45px;
+                            line-height: 25px;
+                            font-weight: 400;
                             &:hover {
-                                background-color: #FFFFFF;
-                                color: #2498b3;
+                                background-color: #e9f8fb;
                             }
-                        }
-                    }
+                            @include pc-min {
+                                display: -webkit-box;
+                                -webkit-box-align: center;
+                                height: 57px;
+                                background-color: #e9f8fb;
+                                &:hover {
+                                    background-color: #FFFFFF;
+                                    color: #2498b3;
+                                }
+                            }
+                        } /*a*/
+                    } /*li*/
                 } /*.sub*/
             } /*.has-sub*/
         } /*.gNav-menu*/
@@ -353,18 +396,21 @@ $pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
         }
         p {
             margin-top: 25px;
+            font-weight: 700;
             @include md {
                 font-size: 0.8125rem;/*13px*/
             }
         }
         .button {
             font-size: 1.125rem;/*18px*/
+            font-weight: 700;
             background-color: #2498B3;
             color: #FFFFFF;
             border-radius: 5px;
             padding: 18px 37px;
             margin: 25px auto;
             display: inline-block;
+            transition: .5s;
             @include md {
                 padding: 7px 19px;
                 margin: 10px auto;
@@ -391,15 +437,23 @@ $pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
             @include md {
                 flex-direction: column;
                 align-items: center;
-                height: 1240px;
+                height: 1154px;
             }
             .recommendation-entry {
                   z-index: 20;
                   width: 230px;
                   margin: -193px 50px 0px;
-                  @include md {
+                 @include pc-s {
+                    width: 30%;
+                    margin: -193px 2% 0px 2%;
+                    padding: 0;
+                 }
+                 @include md {
                     margin: auto 0px;
-                }
+                    padding-left: 20px;
+                    padding-right: 25px;
+                    width: auto;
+                 }
                  i {
                     width: 230px;
                     height: 230px;
@@ -409,6 +463,7 @@ $pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
                     border-radius: 50%;
                     background-color: #FFFFFF;
                     margin: 0 auto;
+                    border: solid 5px;
                   }
                   h1 {
                     font-size: 1.5rem;
@@ -424,30 +479,3 @@ $pc-lg: 1265px; /*ロゴ横タイトルを消す時に使用*/
 } /*.main*/
 } /*body*/
 } /*html*/
-
-/*
- @include max-width(1200px) {
- &.open>a::before {
-            display: block;
-            content: "";
-            position: absolute;
-            top: 23.55px;
-            right: 13px;
-            width: 24px;
-            height: 2px;
-            margin-top: -1px;
-            background: #121212;
-        }
-        &.open>a::after {
-            display: block;
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 50px;
-            height: 47.1px;
-            margin-top: 0;
-            background: #f7f7f7;
-        }
-*/
