@@ -9,7 +9,7 @@ $(function() {
  // アコーディオンメニューの設定 
 $(function(){
   $(".has-sub").hover(function(){      // .has-subボタンをホバーすると
-    $(this).children(".sub").slideToggle(230); // .subメニューがスライドで出る
+    $(this).children(".sub").stop().slideToggle(230); // .subメニューがスライドで出る
   });
 });
 
