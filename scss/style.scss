@@ -21,7 +21,7 @@ html {
             box-sizing: border-box;
             margin: 0px; 
             padding: 0px; 
-           /* outline: 1px solid red;*/
+         /*   outline: 1px solid red;*/
         }
        
 /*-- ブレイクポイントを変数に格納 ---------------------*/
@@ -110,9 +110,10 @@ $pc-lg: 1280px; /*ロゴ横タイトルを消す時に使用*/
         /*ハンバーガーボタンの大きさ*/
         width: 48px;
         height: 48px;
+        border: none;
         /*最前面に*/
         z-index: 3;
-        background-color: #f6efdb;
+        background-color: #FFFFFF;
         &:hover {
             cursor: pointer;
         }
@@ -144,7 +145,8 @@ $pc-lg: 1280px; /*ロゴ横タイトルを消す時に使用*/
                 height: 100%;
                 background-color: #2498B3;
                 transition: .5s;
-                transform: translateY(-12px);
+              /*  transform: translateY(-12px);*/
+                transform: translateY(-9px);
             }
             &.open::before {
                 content: "";
@@ -161,7 +163,8 @@ $pc-lg: 1280px; /*ロゴ横タイトルを消す時に使用*/
                 height: 100%;
                 background-color: #2498B3;
                 transition: .5s;
-                transform: translateY(12px);
+              /*  transform: translateY(12px);*/
+                transform: translateY(9px);
             }
             &.open::after {
                 content: "";

@@ -39,7 +39,7 @@ html body * {
           box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  /* outline: 1px solid red;*/
+  /*   outline: 1px solid red;*/
 }
 html body #page-header {
   display: -webkit-box;
@@ -101,9 +101,10 @@ html body #hamburger .btn-gNav {
   /*ハンバーガーボタンの大きさ*/
   width: 48px;
   height: 48px;
+  border: none;
   /*最前面に*/
   z-index: 3;
-  background-color: #f6efdb;
+  background-color: #FFFFFF;
   /*btn-line*/
 }
 html body #hamburger .btn-gNav:hover {
@@ -150,8 +151,9 @@ html body #hamburger .btn-gNav .btn-line::before {
   background-color: #2498B3;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  -webkit-transform: translateY(-12px);
-          transform: translateY(-12px);
+  /*  transform: translateY(-12px);*/
+  -webkit-transform: translateY(-9px);
+          transform: translateY(-9px);
 }
 html body #hamburger .btn-gNav .btn-line.open::before {
   content: "";
@@ -171,8 +173,9 @@ html body #hamburger .btn-gNav .btn-line::after {
   background-color: #2498B3;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  -webkit-transform: translateY(12px);
-          transform: translateY(12px);
+  /*  transform: translateY(12px);*/
+  -webkit-transform: translateY(9px);
+          transform: translateY(9px);
 }
 html body #hamburger .btn-gNav .btn-line.open::after {
   content: "";
